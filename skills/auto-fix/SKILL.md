@@ -73,6 +73,24 @@ Fix: Use getEntityWorld() instead (Yarn 1.21+)
      Or: getWorld() → getEntityWorld()
 ```
 
+### BlockItem Translation Key
+```
+Pattern: Block has no translation in game
+Root Cause: BlockItems use "item.modid.name" key, not "block.modid.name"
+Fix: Add BOTH keys in lang file:
+     "item.modid.thunder_ore": "Translation",
+     "block.modid.thunder_ore": "Translation"
+     (the blockstate/tooltip uses block., the held item uses item.)
+```
+
+### GearFactory Palette Overwrite
+```
+Pattern: Textures changed to wrong color after running forge.ps1
+Root Cause: forge.ps1 writes to project by default (overwrites all textures)
+Fix: forge.ps1 v1.2+ uses LIBRARY ONLY by default
+     Use -Apply flag to explicitly write to project
+     Check: forge.ps1 -PaletteName ruby -Apply
+
 ### Recipe JSON Parse Error
 ```
 Pattern: "Couldn't parse data file" + "recipe"
