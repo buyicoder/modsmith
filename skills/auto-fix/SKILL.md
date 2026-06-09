@@ -51,6 +51,28 @@ Fix: Replace world.isClient with world.isClient()
      (Yarn uses method, not field)
 ```
 
+### SwordItem Removed (1.21)
+```
+Pattern: "找不到符号 SwordItem" / "SwordItem无法转换为Item"
+Root Cause: SwordItem class removed in MC 1.21
+Fix: Extend Item instead, apply .sword() on Item.Settings
+     Constructor takes (Settings) not (ToolMaterial, float, float, Settings)
+```
+
+### postHit Return Type (1.21)
+```
+Pattern: "返回类型boolean与void不兼容" / "方法不会覆盖或实现超类型的方法"
+Root Cause: Item.postHit() returns void in 1.21, only old SwordItem returned boolean
+Fix: public void postHit(...) { ... } — no return value
+```
+
+### getWorld → getEntityWorld (Yarn)
+```
+Pattern: "找不到符号: 方法 getWorld()" on Entity/LivingEntity
+Fix: Use getEntityWorld() instead (Yarn 1.21+)
+     Or: getWorld() → getEntityWorld()
+```
+
 ### Recipe JSON Parse Error
 ```
 Pattern: "Couldn't parse data file" + "recipe"
