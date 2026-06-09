@@ -1,0 +1,45 @@
+# MC Mod AI Developer
+
+Claude Code plugin for modular, progressive Minecraft mod development. One master skill orchestrates specialized sub-skills to generate complete, compilable mod projects from natural language descriptions.
+
+## Quick Start
+
+```
+/mc-mod-master Create a ruby sword with lightning power
+```
+
+The master skill automatically:
+1. Parses your intent (item type, features, visual style)
+2. Dispatches to texture-generator, item-generator, etc.
+3. Assembles all files into a complete mod project
+4. Provides build instructions
+
+## Architecture
+
+```
+mc-mod-master (orchestrator)
+├── texture-generator    ← PNG textures via GearFactory
+├── item-generator       ← Java + JSON for items/tools/armor
+├── block-generator      ← Java + JSON for blocks
+├── entity-generator     ← (Phase 2) mobs, bosses, pets
+└── gameplay-generator   ← (Phase 3) skills, quests, economy
+```
+
+## Phase Status
+
+| Phase | Skills | Status |
+|------|--------|--------|
+| 1 | master, texture, item, block | ✅ V1.0 |
+| 2 | entity | 📝 Planned |
+| 3 | gameplay | 📝 Planned |
+
+## Requirements
+
+- Claude Code with skill support
+- Java 21+ (for Minecraft 1.21+)
+- [GearFactory](https://github.com/buyicoder/GearFactory) engine (for texture generation)
+- [fabric-mc-mod-development](https://github.com/buyicoder/mc-mod-ai-developer) skill (API reference)
+
+## License
+
+MIT

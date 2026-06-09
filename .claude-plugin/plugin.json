@@ -1,0 +1,21 @@
+{
+  "name": "mc-mod-ai-developer",
+  "version": "1.0.0",
+  "description": "MC Mod AI Developer - Modular Minecraft mod development toolchain for Claude Code. One master skill orchestrates sub-skills for texture generation, item/block/entity creation, and gameplay system design.",
+  "author": "buyicoder",
+  "license": "MIT",
+  "keywords": ["minecraft", "fabric", "forge", "modding", "texture", "equipment"],
+  "claudeCode": {
+    "minVersion": "1.0.0",
+    "skills": [
+      "skills/mc-mod-master/SKILL.md",
+      "skills/texture-generator/SKILL.md",
+      "skills/item-generator/SKILL.md",
+      "skills/block-generator/SKILL.md",
+      "skills/entity-generator/SKILL.md",
+      "skills/gameplay-generator/SKILL.md"
+    ]
+  },
+  "repository": "https://github.com/buyicoder/mc-mod-ai-developer",
+  "homepage": "https://github.com/buyicoder/mc-mod-ai-developer#readme"
+}
