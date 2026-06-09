@@ -131,6 +131,15 @@ REGISTERED spawn egg → MUST have:
 
 Never consider spawn eggs verified by `gradlew build` alone. They can compile and still crash in `runClient` during static registration.
 
+### Rule 13: Entity Asset Contract
+```
+REGISTERED complex entity SHOULD have:
+  models/<name>.contract.json
+  texture dimensions matching contract.texture
+  model TexturedModelData size matching contract.model
+  renderer texture path matching contract.renderer
+```
+
 ## Output Format
 
 ```

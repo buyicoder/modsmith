@@ -23,6 +23,8 @@ reference entity + texture size + UV layout + part names + animation names + ent
 
 If any one changes, re-check all others before running the game.
 
+For the complete contract schema, see `asset-contract-reference.md`.
+
 ## Workflow
 
 ### 1. Design the Entity Contract

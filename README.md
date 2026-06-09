@@ -25,6 +25,16 @@ mc-mod-master (orchestrator)
 +-- gameplay-generator   <- skills, quests, economy
 ```
 
+## Entity Pipeline
+
+ModFactory can run a closed-loop entity pipeline:
+
+```text
+idea -> blueprint -> Blockbench assets -> asset contract -> Fabric code -> integrity check -> build -> runClient QA
+```
+
+See `docs/entity-pipeline.md`.
+
 ## Phase Status
 
 | Phase | Skills | Status |

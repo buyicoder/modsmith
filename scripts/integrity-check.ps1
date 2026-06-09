@@ -252,6 +252,22 @@ function Check-Mixins {
     }
 }
 
+function Check-EntityContracts {
+    $contracts = Get-ChildItem -Path $ProjectDir -Recurse -Filter "*.contract.json" -ErrorAction SilentlyContinue |
+        Where-Object { $_.FullName -notmatch "\\build\\" }
+    foreach ($contract in $contracts) {
+        $validator = Join-Path $PSScriptRoot "validate-entity-assets.ps1"
+        if (Test-Path $validator) {
+            & powershell -NoProfile -ExecutionPolicy Bypass -File $validator -ProjectDir $ProjectDir -ContractPath $contract.FullName
+            if ($LASTEXITCODE -eq 0) {
+                $script:passes += "entity-contract: $($contract.Name)"
+            } else {
+                $script:errors += "ENTITY_CONTRACT_FAILED: $($contract.FullName)"
+            }
+        }
+    }
+}
+
 # ============================================================
 # Main
 # ============================================================
@@ -281,6 +297,9 @@ foreach ($block in $blocks) {
 # Check mixins
 Check-Mixins
 
+# Check entity asset contracts
+Check-EntityContracts
+
 # ============================================================
 # Report
 # ============================================================
@@ -298,16 +317,16 @@ Write-Host "PASSES ($passCount):" -ForegroundColor Green
 if ($passCount -gt 20) {
     Write-Host "  (${passCount} checks passed - all good)" -ForegroundColor Green
 } else {
-    foreach ($p in $passes) { Write-Host "  ✅ $p" -ForegroundColor Green }
+    foreach ($p in $passes) { Write-Host "  [PASS] $p" -ForegroundColor Green }
 }
 
 Write-Host ""
 Write-Host "WARNINGS ($warnCount):" -ForegroundColor Yellow
-foreach ($w in $warnings) { Write-Host "  ⚠️  $w" -ForegroundColor Yellow }
+foreach ($w in $warnings) { Write-Host "  [WARN] $w" -ForegroundColor Yellow }
 
 Write-Host ""
 Write-Host "FAILURES ($errorCount):" -ForegroundColor Red
-foreach ($e in $errors) { Write-Host "  ❌ $e" -ForegroundColor Red }
+foreach ($e in $errors) { Write-Host "  [FAIL] $e" -ForegroundColor Red }
 
 Write-Host ""
 Write-Host "========================================"

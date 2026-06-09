@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "entityId": "modid:dark_iron_golem",
+  "displayName": "Dark Iron Golem",
+  "reference": {
+    "source": "minecraft:iron_golem",
+    "bbmodelPath": "models/iron_golem_official.bbmodel"
+  },
+  "texture": {
+    "path": "src/main/resources/assets/modid/textures/entity/dark_iron_golem.png",
+    "width": 128,
+    "height": 128,
+    "source": "embedded-bbmodel"
+  },
+  "model": {
+    "javaPath": "src/client/java/com/example/client/model/DarkIronGolemEntityModel.java",
+    "textureWidth": 128,
+    "textureHeight": 128,
+    "parts": ["head", "body", "right_arm", "left_arm", "right_leg", "left_leg"]
+  },
+  "renderer": {
+    "javaPath": "src/client/java/com/example/client/renderer/DarkIronGolemEntityRenderer.java",
+    "textureIdentifier": "modid:textures/entity/dark_iron_golem.png"
+  },
+  "runtime": {
+    "entityTypeField": "DARK_IRON_GOLEM",
+    "dimensions": { "width": 1.4, "height": 2.9 },
+    "spawnEgg": "modid:dark_iron_golem_spawn_egg",
+    "bossBar": true
+  },
+  "animations": ["idle", "walk", "attack_slam", "hurt", "death_collapse"]
+}

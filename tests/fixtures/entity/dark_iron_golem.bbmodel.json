@@ -1,0 +1,22 @@
+{
+  "meta": { "format_version": "5.0", "model_format": "bedrock" },
+  "name": "dark_iron_golem",
+  "resolution": { "width": 1, "height": 1 },
+  "textures": [
+    {
+      "name": "dark_iron_golem",
+      "id": "0",
+      "width": 1,
+      "height": 1,
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGOSHzRgAAAAABJRU5ErkJggg=="
+    }
+  ],
+  "elements": [
+    { "name": "head", "type": "cube", "from": [-4, 33, -7.5], "to": [4, 43, 0.5], "uv_offset": [0, 0] },
+    { "name": "body", "type": "cube", "from": [-9, 21, -6], "to": [9, 33, 5], "uv_offset": [0, 40] }
+  ],
+  "animations": [
+    { "name": "idle", "length": 2.0, "loop": true },
+    { "name": "walk", "length": 1.2, "loop": true }
+  ]
+}
