@@ -25,6 +25,21 @@ cd forge_engine
 | `-PaletteName` | ruby, sapphire, emerald, amethyst, topaz, obsidian, silver, rose_gold, coral, amber, jade, crimson, ocean, forest, inferno, frost, shadow, celestial, thunder, onyx | ruby |
 | `-Shape` | vanilla, copper, aura, better_weapons, amethyst, fresh | vanilla |
 | `-ItemName` | sword, pickaxe, axe, shovel, hoe, helmet, chestplate, leggings, boots, all | all |
+| `-OutputName` | Any string (custom item prefix) | ruby |
+| `-Apply` | Flag: also write to project textures/ | (off) |
+
+### Custom Item Names (v1.3+)
+```powershell
+# Generate thunder_sword.png instead of ruby_sword.png
+.\forge.ps1 -PaletteName topaz -OutputName thunder -Apply
+# → textures/item/thunder_sword.png (topaz/gold colored)
+# → textures/item/thunder_pickaxe.png
+# → ... etc
+
+# Without -Apply: library only, safe
+.\forge.ps1 -PaletteName ruby -OutputName custom_mod
+# → output/ruby/item/custom_mod_sword.png (library only)
+```
 
 ### Palette Selection Guide
 Match palette to user's description:
