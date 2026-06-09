@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo  ModSmith v3.1 — One-Click Install
+echo  ModFactory v3.1 — One-Click Install
 echo ========================================
 echo.
 
@@ -58,7 +58,7 @@ echo ========================================
 echo  Install Complete!
 echo ========================================
 echo.
-echo  ModSmith skills: 17 (auto-loaded)
+echo  ModFactory skills: 17 (auto-loaded)
 echo  MCP servers: mcdev-mcp + mcmodding-mcp
 echo  GearFactory: texture engine
 echo  Architecture: 5 patterns from classic mods

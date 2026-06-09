@@ -7,7 +7,7 @@ description: Use when the user wants to analyze an existing Minecraft mod's arch
 
 ## Overview
 
-Analyzes open-source Minecraft mods to extract architecture patterns, registration strategies, and reusable code templates. Builds a structured knowledge base that feeds into other ModSmith skills for generating better code.
+Analyzes open-source Minecraft mods to extract architecture patterns, registration strategies, and reusable code templates. Builds a structured knowledge base that feeds into other ModFactory skills for generating better code.
 
 ## Workflow
 

@@ -7,7 +7,7 @@ description: Use when a Minecraft mod fails to compile, has build errors, or the
 
 ## Overview
 
-Parses Gradle build output, maps errors to known fixes, applies corrections automatically, and rebuilds. Forms the "FIX" phase of the ModSmith closed-loop pipeline.
+Parses Gradle build output, maps errors to known fixes, applies corrections automatically, and rebuilds. Forms the "FIX" phase of the ModFactory closed-loop pipeline.
 
 ## Error Pattern Database
 

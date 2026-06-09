@@ -49,7 +49,7 @@ generate_texture("a legendary ruby sword with golden hilt", output="ruby_sword_l
 **Usage via web:**
 1. Describe the item: "Thunder sword with yellow lightning blade and dark handle"
 2. Download generated 16×16 PNG
-3. Place in ModSmith project at `textures/item/thunder_sword.png`
+3. Place in ModFactory project at `textures/item/thunder_sword.png`
 
 **Limitations:**
 - Requires internet connection

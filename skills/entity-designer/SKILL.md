@@ -99,7 +99,7 @@ Present the blueprint to user. Wait for explicit approval before proceeding.
 ### Gate 3: Generation Ready
 Blueprint passed to `entity-generator` which now knows exactly what to build.
 
-## Integration with ModSmith Pipeline
+## Integration with ModFactory Pipeline
 
 ```
 User: "I want a thunder golem"

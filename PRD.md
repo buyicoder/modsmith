@@ -1,9 +1,9 @@
-# ModSmith 详细需求文档 V1.0
+# ModFactory 详细需求文档 V1.0
 
 ## 1. 项目概述
 
 ### 1.1 项目定位
-- **全称**: ModSmith
+- **全称**: ModFactory
 - **类型**: Claude Code 专属 AI 插件
 - **核心定位**: 模块化、渐进式 MC 模组开发工具链
 - **区别于 CreativeMode**: 输出完整可编辑源码，非黑盒一键出包
@@ -26,7 +26,7 @@
 
 ### 2.2 目录结构
 ```
-modsmith/
+modfactory/
 ├── .claude-plugin/plugin.json
 ├── skills/
 │   ├── mc-mod-master/SKILL.md

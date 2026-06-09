@@ -3,7 +3,7 @@ name: mc-mod-master
 description: Use when the user wants to create a complete Minecraft mod, add a new feature to an existing mod, or describes a mod idea in natural language. Triggers on: "make a mod", "create a sword/armor/block/entity", "add a weapon", Minecraft modding requests, or `/mc-mod-master` command. This is the master orchestrator that decomposes complex mod requests into sub-tasks and dispatches them to specialized sub-skills.
 ---
 
-# ModSmith — Master Skill
+# ModFactory — Master Skill
 
 ## Overview
 
@@ -177,7 +177,7 @@ When dispatching to sub-skills, ALWAYS pass the selected architecture pattern.
 
 ## MCP Integration (v3.1)
 
-ModSmith integrates with external MCP servers for enhanced accuracy. See `integration/mcp-ecosystem.md` for full setup.
+ModFactory integrates with external MCP servers for enhanced accuracy. See `integration/mcp-ecosystem.md` for full setup.
 
 ### MCP-Aware Generation
 **Before generating any code that references vanilla Minecraft classes, check if mcdev-mcp is available:**
@@ -197,7 +197,7 @@ mcdev-mcp tools:
 
 ## Phase 3: Closed-Loop Pipeline
 
-After generating all code and resources, ModSmith runs the build→fix→rebuild loop:
+After generating all code and resources, ModFactory runs the build→fix→rebuild loop:
 
 ```
 1. GENERATE all code + resources

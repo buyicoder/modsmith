@@ -1,4 +1,4 @@
-# ModSmith Integrity Checker
+# ModFactory Integrity Checker
 # Scans project for missing connections between registrations and resources
 
 param([string]$ProjectDir = ".")
@@ -258,7 +258,7 @@ function Check-Mixins {
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host " ModSmith Integrity Checker" -ForegroundColor Cyan
+Write-Host " ModFactory Integrity Checker" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 

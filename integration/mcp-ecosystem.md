@@ -1,10 +1,10 @@
-# ModSmith MCP Integration Guide
+# ModFactory MCP Integration Guide
 
 ## Integrated MCP Servers
 
-ModSmith v3.1 integrates with the following external MCP servers for enhanced accuracy:
+ModFactory v3.1 integrates with the following external MCP servers for enhanced accuracy:
 
-| MCP Server | NPM | Tools | What It Gives ModSmith |
+| MCP Server | NPM | Tools | What It Gives ModFactory |
 |-----------|-----|-------|----------------------|
 | **mcdev-mcp** | `@mcdxai/minecraft-dev-mcp` | 20 | Live MC source code, method signatures, Mixin validation |
 | **mcmodding-mcp** | `mcmodding-mcp` | 6 | Official Fabric/NeoForge docs, mappings, examples |
@@ -36,7 +36,7 @@ ModSmith v3.1 integrates with the following external MCP servers for enhanced ac
 }
 ```
 
-## How ModSmith Uses MCPs
+## How ModFactory Uses MCPs
 
 ```
 mc-mod-master generates code
@@ -55,7 +55,7 @@ mc-mod-master generates code
 ## Integration Points
 
 ### 1. Method Signature Verification
-When generating Mixin or custom item classes, ModSmith queries mcdev-mcp for the EXACT method signature in the target MC version. This eliminates "Invalid descriptor" errors.
+When generating Mixin or custom item classes, ModFactory queries mcdev-mcp for the EXACT method signature in the target MC version. This eliminates "Invalid descriptor" errors.
 
 ```
 Before (no MCP): "try getWorld() or getEntityWorld() — guess and fix"
@@ -73,7 +73,7 @@ mcmodding-mcp provides real-time Fabric API documentation, replacing guesswork w
 
 ## Fallback Behavior
 
-If MCP servers are unavailable, ModSmith falls back to its built-in knowledge:
+If MCP servers are unavailable, ModFactory falls back to its built-in knowledge:
 - `fabric-mc-mod-development` skill (Yarn/Mojang mappings)
 - `mod-analyzer` knowledge base (5 classic mod patterns)
 - `auto-fix` error pattern database (14 patterns)

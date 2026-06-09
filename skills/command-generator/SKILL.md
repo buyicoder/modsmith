@@ -74,7 +74,7 @@ dispatcher.register(CommandManager.literal("givegem")
 
 ### Subcommands
 ```java
-dispatcher.register(CommandManager.literal("modsmith")
+dispatcher.register(CommandManager.literal("modfactory")
     .requires(source -> source.hasPermissionLevel(2)) // OP only
     .then(CommandManager.literal("reload")
         .executes(context -> {
@@ -97,7 +97,7 @@ dispatcher.register(CommandManager.literal("modsmith")
     .then(CommandManager.literal("info")
         .executes(context -> {
             context.getSource().sendFeedback(
-                () -> Text.literal("ModSmith v2.1.0"), false);
+                () -> Text.literal("ModFactory v2.1.0"), false);
             return Command.SINGLE_SUCCESS;
         })
     )

@@ -1,7 +1,7 @@
 {
-  "name": "modsmith",
+  "name": "modfactory",
   "version": "3.0.0",
-  "description": "ModSmith v2.0 - Modular Minecraft mod development agent for Claude Code. Closed-loop build→fix→rebuild pipeline. 8 skills covering texture/ item/block/entity/gameplay generation plus auto-fix repair.",
+  "description": "ModFactory v2.0 - Modular Minecraft mod development agent for Claude Code. Closed-loop build→fix→rebuild pipeline. 8 skills covering texture/ item/block/entity/gameplay generation plus auto-fix repair.",
   "author": "buyicoder",
   "license": "MIT",
   "keywords": ["minecraft", "fabric", "forge", "modding", "texture", "equipment"],
@@ -30,6 +30,6 @@
       "config": "mcp/mcp-servers.json"
     }
   },
-  "repository": "https://github.com/buyicoder/modsmith",
-  "homepage": "https://github.com/buyicoder/modsmith#readme"
+  "repository": "https://github.com/buyicoder/modfactory",
+  "homepage": "https://github.com/buyicoder/modfactory#readme"
 }

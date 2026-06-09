@@ -83,9 +83,9 @@ Each module has its OWN internal structure. Modules share code via `library/`. M
 | **registry/ subpackage** | Farmer's Delight | 10-50 items |
 | **Root All*.java** | Create | 50+ items across modules |
 
-## What ModSmith Should Generate
+## What ModFactory Should Generate
 
-Based on the user's description, ModSmith should:
+Based on the user's description, ModFactory should:
 
 1. **Auto-detect mod size** from the user's request:
    - "Add a sword" → small → flat pattern

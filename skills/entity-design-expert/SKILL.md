@@ -7,7 +7,7 @@ description: Use when creating a polished custom Minecraft mob, boss, pet, or cr
 
 ## Overview
 
-Own the complete entity production loop: concept -> official reference -> model/texture -> animation -> Fabric code/resources -> runtime verification. Use this as the orchestrator for high-quality mobs; delegate implementation details to existing ModSmith skills.
+Own the complete entity production loop: concept -> official reference -> model/texture -> animation -> Fabric code/resources -> runtime verification. Use this as the orchestrator for high-quality mobs; delegate implementation details to existing ModFactory skills.
 
 **Required sub-skills:** `entity-designer`, `blockbench-animator`, `entity-generator`, `integrity-checker`, `auto-fix`.
 
@@ -141,7 +141,7 @@ Validation order:
 
 If `build` passes but `runClient` fails, treat it as incomplete. Entity rendering and spawn eggs often fail only at runtime.
 
-## ModSmith Dispatch Protocol
+## ModFactory Dispatch Protocol
 
 For a complex entity request:
 
