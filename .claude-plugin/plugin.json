@@ -1,6 +1,6 @@
 {
   "name": "modsmith",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "ModSmith - Modular Minecraft mod development toolchain for Claude Code. One master skill orchestrates sub-skills for texture generation, item/block/entity creation, and gameplay system design.",
   "author": "buyicoder",
   "license": "MIT",
