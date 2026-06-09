@@ -89,3 +89,21 @@ Complete API name mapping table for Minecraft 1.21.x.
 6. **ToolMaterial is a Record** in both mappings (1.21+), not an interface
 7. **SwordItem/PickaxeItem removed** in 1.21 — use `.sword()` and `.pickaxe()` on Settings
 8. **EquipmentAssetKeys.register()** uses `Identifier.ofVanilla()` → namespace is `minecraft:`, not mod ID
+
+## Entity API Differences (1.21.11+)
+
+| Yarn | Mojang | Notes |
+|------|--------|-------|
+| `EntityModel<LivingEntityRenderState>` | Same | Model takes RenderState, NOT Entity |
+| `ModelTransform.origin(x,y,z)` | `ModelTransform.pivot(x,y,z)` | Pivot renamed in Yarn |
+| `render()` is **final** | Same | Don't override; models auto-render |
+| `EntityAttributes.MAX_HEALTH` | `EntityAttributes.GENERIC_MAX_HEALTH` | Yarn drops GENERIC_ prefix |
+| `EntityAttributes.MOVEMENT_SPEED` | `EntityAttributes.GENERIC_MOVEMENT_SPEED` |  |
+| `EntityAttributes.ATTACK_DAMAGE` | `EntityAttributes.GENERIC_ATTACK_DAMAGE` |  |
+| `EntityAttributes.ARMOR` | `EntityAttributes.GENERIC_ARMOR` |  |
+| `KNOCKBACK_RESISTANCE` | `GENERIC_KNOCKBACK_RESISTANCE` |  |
+| `EntityType.Builder.build(RegistryKey)` | Same | Takes key, not string |
+| `SpawnEggItem(Settings)` | `SpawnEggItem(EntityType, Settings)` | EntityType removed from ctor |
+| `SpawnEggItem.forEntity(type)` | Same | Static factory for spawn eggs |
+| `enchanted_count_increase` + `"enchantment":"minecraft:looting"` | Same | Was `looting_enchant` |
+| `SpawnLocationTypes` | `SpawnLocationTypes` | May not exist in Yarn |

@@ -12,6 +12,92 @@ Generates complete entity registration, AI behavior, rendering, spawn rules, and
 **REQUIRED KNOWLEDGE:** `fabric-mc-mod-development` for registration patterns.
 **REQUIRED CONTEXT:** `mod-analyzer/knowledge/architecture-patterns.md` for package structure.
 
+## Critical: 1.21.11 Entity Rendering (RenderState API)
+
+1.21.11 completely rewrote entity rendering. The old pattern `EntityModel<MyEntity>` is GONE.
+
+**New pattern:** `EntityModel<RenderState>` — the model takes a RENDER STATE, not the entity.
+
+```
+Entity (server logic)  →  RenderState (data bridge)  →  Model (GPU vertices)
+     │                          │                           │
+ ThunderGolemEntity    LivingEntityRenderState     ThunderGolemEntityModel
+ (AI, attributes)       (bodyYaw, pitch,           (head/body/arms/legs)
+                         limbSwingAmplitude)
+```
+
+**Simplest setup (hostile mob):**
+```java
+// Model: use LivingEntityRenderState as type parameter
+public class MyModel extends EntityModel<LivingEntityRenderState> {
+    public MyModel(ModelPart root) { super(root); }
+    public static TexturedModelData getTexturedModelData() { ... }
+    @Override public void setAngles(LivingEntityRenderState state) { ... }
+    // render() is FINAL in 1.21.11 — do NOT override it
+}
+
+// Renderer: 3 type params
+public class MyRenderer extends MobEntityRenderer<MyEntity, LivingEntityRenderState, MyModel> {
+    public static final EntityModelLayer LAYER = ...;
+    public MyRenderer(Context ctx) { super(ctx, new MyModel(ctx.getPart(LAYER)), 0.7F); }
+    @Override public LivingEntityRenderState createRenderState() { return new LivingEntityRenderState(); }
+    @Override public Identifier getTexture(LivingEntityRenderState state) { return TEXTURE; }
+}
+
+// Client registration (both model layer AND renderer required!):
+EntityModelLayerRegistry.registerModelLayer(MyRenderer.LAYER, MyModel::getTexturedModelData);
+EntityRendererRegistry.register(MyEntityType, MyRenderer::new);
+// ⚠️ Missing EITHER → NullPointerException: entityRenderer is null → game crash
+```
+
+## Yarn 1.21.11 API Notes
+
+### EntityModel
+- `ModelTransform.pivot(x,y,z)` → `ModelTransform.origin(x,y,z)` (Yarn only!)
+- `render()` is **final** — model parts render automatically
+- Type parameter: `EntityModel<LivingEntityRenderState>` not `EntityModel<MyEntity>`
+
+### EntityAttributes (no GENERIC_ prefix in Yarn)
+```
+❌ EntityAttributes.GENERIC_MAX_HEALTH
+✅ EntityAttributes.MAX_HEALTH
+✅ EntityAttributes.MOVEMENT_SPEED
+✅ EntityAttributes.ATTACK_DAMAGE
+✅ EntityAttributes.ARMOR
+✅ EntityAttributes.KNOCKBACK_RESISTANCE
+```
+
+### EntityType Registration
+```java
+// ❌ Old: .build("name")
+// ✅ New: .build(RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(MOD_ID, "name")))
+```
+
+### SpawnEggItem (1.21.11)
+```java
+// Constructor takes ONLY Settings, NOT EntityType
+new SpawnEggItem(new Item.Settings())
+// Entity type is encoded in item NBT, not constructor
+// Use SpawnEggItem.forEntity(entityType) as factory
+// ⚠️ May crash in static initializer — test carefully
+```
+
+### Source Set Separation
+- Entity class → `src/main/java/` (server + client shared)
+- Model + Renderer → `src/client/java/` (client only)
+- Client classes can't access `net.minecraft.client.*` from main source set
+
+### Boss Bar
+- Use `ServerBossBar` with RANGE-BASED management, not `onStartedTrackingBy`
+- `onStartedTrackingBy` fires at entity tracking range (very far!)
+- Manually add/remove players based on distance (<32 blocks recommended)
+
+### Loot Table (1.21.11)
+- `looting_enchant` → `enchanted_count_increase` with `"enchantment": "minecraft:looting"`
+- All numeric values are floats: `1.0`, `0.0`
+- Pools have `"bonus_rolls": 0.0` field
+- Entity tables need `"random_sequence": "modid:entities/name"`
+
 ## Entity Type Selection
 
 ```

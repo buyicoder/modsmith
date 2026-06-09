@@ -113,7 +113,60 @@ Fix: Ensure both textures exist:
      textures/entity/equipment/humanoid_leggings/<name>.png
 ```
 
-### Mixin Target Not Found
+### EntityModel Type Parameter (1.21.11)
+```
+Pattern: "找不到符号: 类 EntityModel<ThunderGolemEntity>"
+Root Cause: 1.21.11 uses EntityModel<LivingEntityRenderState>, not EntityModel<MyEntity>
+Fix: Change type parameter to LivingEntityRenderState
+     EntityModel<LivingEntityRenderState>
+```
+
+### ModelTransform pivot → origin (Yarn)
+```
+Pattern: "找不到符号: 方法 pivot(float,float,float)"
+Fix: Use ModelTransform.origin() instead (Yarn naming)
+     Also: render() is final in 1.21.11 — remove override
+```
+
+### EntityAttributes GENERIC_ prefix missing (Yarn)
+```
+Pattern: "找不到符号: GENERIC_MAX_HEALTH" or similar
+Fix: Remove GENERIC_ prefix in Yarn 1.21.11
+     MAX_HEALTH, MOVEMENT_SPEED, ATTACK_DAMAGE, ARMOR, etc.
+```
+
+### EntityType.build() takes RegistryKey
+```
+Pattern: "无法将类Builder中的方法build应用到给定类型"
+Fix: .build(RegistryKey.of(RegistryKeys.ENTITY_TYPE, Identifier.of(MOD_ID, name)))
+     NOT: .build("name")
+```
+
+### SpawnEggItem Constructor (1.21.11)
+```
+Pattern: "无法将类SpawnEggItem中的构造器应用到给定类型"
+Fix: SpawnEggItem(new Item.Settings()) — EntityType NOT in constructor
+     Use SpawnEggItem.forEntity(entityType) static factory instead
+```
+
+### Loot Table API (1.21.11)
+```
+Pattern: "Unknown registry key: minecraft:looting_enchant"
+Fix: replace looting_enchant → enchanted_count_increase
+     Add: "enchantment": "minecraft:looting"
+     All numeric values: floats (1.0 not 1)
+     Pool needs: "bonus_rolls": 0.0
+     Entity tables need: "random_sequence": "modid:entities/name"
+```
+
+### EntityRenderer null (missing renderer/model layer)
+```
+Pattern: "entityRenderer is null" at EntityRenderManager
+Root Cause: Entity registered without renderer OR without model layer
+Fix: Register BOTH:
+     EntityModelLayerRegistry.registerModelLayer(layer, model factory)
+     EntityRendererRegistry.register(entityType, renderer factory)
+```
 ```
 Pattern: "InvalidInjectionException: could not find any targets"
 Fix: The method name in @Inject changed in this MC version.
