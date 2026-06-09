@@ -3,7 +3,7 @@ name: mc-mod-master
 description: Use when the user wants to create a complete Minecraft mod, add a new feature to an existing mod, or describes a mod idea in natural language. Triggers on: "make a mod", "create a sword/armor/block/entity", "add a weapon", Minecraft modding requests, or `/mc-mod-master` command. This is the master orchestrator that decomposes complex mod requests into sub-tasks and dispatches them to specialized sub-skills.
 ---
 
-# MC Mod AI Developer — Master Skill
+# ModSmith — Master Skill
 
 ## Overview
 

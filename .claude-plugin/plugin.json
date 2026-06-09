@@ -1,7 +1,7 @@
 {
-  "name": "mc-mod-ai-developer",
+  "name": "modsmith",
   "version": "1.0.0",
-  "description": "MC Mod AI Developer - Modular Minecraft mod development toolchain for Claude Code. One master skill orchestrates sub-skills for texture generation, item/block/entity creation, and gameplay system design.",
+  "description": "ModSmith - Modular Minecraft mod development toolchain for Claude Code. One master skill orchestrates sub-skills for texture generation, item/block/entity creation, and gameplay system design.",
   "author": "buyicoder",
   "license": "MIT",
   "keywords": ["minecraft", "fabric", "forge", "modding", "texture", "equipment"],
@@ -16,6 +16,6 @@
       "skills/gameplay-generator/SKILL.md"
     ]
   },
-  "repository": "https://github.com/buyicoder/mc-mod-ai-developer",
-  "homepage": "https://github.com/buyicoder/mc-mod-ai-developer#readme"
+  "repository": "https://github.com/buyicoder/modsmith",
+  "homepage": "https://github.com/buyicoder/modsmith#readme"
 }

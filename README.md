@@ -1,4 +1,4 @@
-# MC Mod AI Developer
+# ModSmith
 
 Claude Code plugin for modular, progressive Minecraft mod development. One master skill orchestrates specialized sub-skills to generate complete, compilable mod projects from natural language descriptions.
 
@@ -38,7 +38,7 @@ mc-mod-master (orchestrator)
 - Claude Code with skill support
 - Java 21+ (for Minecraft 1.21+)
 - [GearFactory](https://github.com/buyicoder/GearFactory) engine (for texture generation)
-- [fabric-mc-mod-development](https://github.com/buyicoder/mc-mod-ai-developer) skill (API reference)
+- [fabric-mc-mod-development](https://github.com/buyicoder/modsmith) skill (API reference)
 
 ## License
 

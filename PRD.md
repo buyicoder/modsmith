@@ -1,9 +1,9 @@
-# MC Mod AI Developer 详细需求文档 V1.0
+# ModSmith 详细需求文档 V1.0
 
 ## 1. 项目概述
 
 ### 1.1 项目定位
-- **全称**: MC Mod AI Developer
+- **全称**: ModSmith
 - **类型**: Claude Code 专属 AI 插件
 - **核心定位**: 模块化、渐进式 MC 模组开发工具链
 - **区别于 CreativeMode**: 输出完整可编辑源码，非黑盒一键出包
@@ -26,7 +26,7 @@
 
 ### 2.2 目录结构
 ```
-mc-mod-ai-developer/
+modsmith/
 ├── .claude-plugin/plugin.json
 ├── skills/
 │   ├── mc-mod-master/SKILL.md
