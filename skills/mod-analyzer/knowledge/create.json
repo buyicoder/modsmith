@@ -1,0 +1,49 @@
+{
+  "name": "Create",
+  "repo": "Fabricators-of-Create/Create",
+  "branch": "mc1.20.1/fabric/dev",
+  "mc_version": "1.20.1",
+  "loader": "fabric",
+  "mappings": "mojang (official)",
+  "package": "com.simibubi.create",
+  "license": "MIT",
+  "size": "large (200+ classes)",
+  "architecture": {
+    "pattern": "content-module + foundation-infrastructure",
+    "key_insight": "content/* = feature modules (what the user sees), foundation/* = shared engine (how it works)",
+    "packages": {
+      "root": "30+ All*.java registration files (AllBlocks, AllItems, AllCreativeModeTabs...)",
+      "content": "Feature modules: kinetics, logistics, trains, schematics, fluids, redstone, contraptions, processing, equipment, decoration, materials",
+      "foundation": "Shared infrastructure: block, blockEntity, item, gui, networking, mixin, render, model, particle, utility, advancement, data, ponder",
+      "api": "Public API for addon mods",
+      "compat": "Mod compatibility layer",
+      "infrastructure": "Data generation, commands, world gen"
+    }
+  },
+  "registration": {
+    "strategy": "flat root All*.java",
+    "pattern": "Every registration type has a single All*.java file at the root package level. Each file contains a static init block or method. Items reference blocks by their AllBlocks constants.",
+    "example": "AllItems extends AllBlocks — items are created from blocks in one line: public static final Item COGWHEEL = new BlockItem(AllBlocks.COGWHEEL, ...)"
+  },
+  "key_patterns": [
+    {
+      "name": "Content Module Pattern",
+      "description": "Each feature lives in content/<feature>/ with its own block/, blockEntity/, renderer/ sub-packages. This is the most scalable pattern for large mods.",
+      "example": "content/kinetics/ contains all rotation-related blocks, entities, and rendering"
+    },
+    {
+      "name": "Foundation as Framework",
+      "description": "foundation/ contains abstract base classes and utilities that ALL content modules use. This is like an internal framework.",
+      "example": "foundation/blockEntity/SyncedBlockEntity.java — base class all block entities extend"
+    },
+    {
+      "name": "Root-Level All*.java Registration",
+      "description": "Unlike Farmer's Delight's registry/ subpackage, Create puts ALL registrations at the ROOT level. This works better for very large mods where every class needs to reference registrations without deep imports."
+    }
+  ],
+  "extracted_templates": [
+    "content_module/",
+    "foundation_framework/",
+    "root_all_registration/"
+  ]
+}

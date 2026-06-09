@@ -1,0 +1,31 @@
+{
+  "name": "Trinkets",
+  "repo": "emilyploszaj/trinkets",
+  "branch": "main",
+  "mc_version": "1.21+",
+  "loader": "fabric",
+  "mappings": "yarn",
+  "package": "dev.emi.trinkets",
+  "license": "MIT",
+  "size": "small (15 classes)",
+  "architecture": {
+    "pattern": "flat package (small mod pattern)",
+    "key_insight": "Small mods don't need deep package hierarchies. Everything in one package with clear class naming is simpler and more maintainable than over-engineering.",
+    "packages": {
+      "root": "All 15 classes at dev.emi.trinkets level",
+      "api": "Public API interfaces for other mods to implement"
+    }
+  },
+  "key_patterns": [
+    {
+      "name": "API-First Design",
+      "description": "Trinkets exposes a clean API interface that other mods implement. The mod itself then USES its own API.",
+      "example": "Trinket interface → SurvivalTrinketSlot implements it → CreativeTrinketSlot extends it"
+    },
+    {
+      "name": "Flat for Small Mods",
+      "description": "When a mod has <20 classes, a flat package structure is cleaner than deep hierarchies. Only split into sub-packages when a package exceeds 20-30 files.",
+      "threshold": "20 classes: stay flat | 50 classes: split into 2-3 sub-packages | 100+: need content/foundation split"
+    }
+  ]
+}

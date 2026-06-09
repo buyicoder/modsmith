@@ -78,6 +78,56 @@ Check `build.gradle` for `mappings` field:
 - `net.fabricmc:yarn` → **Yarn mappings** (use `net.minecraft.item.*`, `Identifier.of()`)
 - `loom.officialMojangMappings()` → **Mojang mappings** (use `net.minecraft.world.item.*`, `ResourceLocation.fromNamespaceAndPath()`)
 
+### Architecture Pattern Selection (from mod-analyzer knowledge)
+Based on the user's request complexity, automatically select the right package structure:
+
+```
+Item count estimate:
+  <10 items + no complex systems → FLAT (Trinkets pattern)
+  10-30 items or 1-2 systems  → FEATURE-BASED (Farmer's Delight pattern)
+  30+ items or 3+ systems     → CONTENT+FOUNDATION (Create pattern)
+
+⚠️ DEFAULT: Feature-based (Farmer's Delight). 95% of mods fit here.
+```
+
+**FLAT pattern** (Trinkets — <10 items):
+```
+com/example/
+├── ExampleMod.java       ← Registration + init in one class
+├── ExampleModClient.java
+└── CustomItem.java       ← Custom classes at root level
+```
+
+**FEATURE-BASED pattern** (Farmer's Delight — DEFAULT):
+```
+com/example/
+├── ExampleMod.java
+├── common/
+│   ├── registry/         ← ModItems, ModBlocks, ModCreativeTabs
+│   ├── item/             ← Custom item classes
+│   ├── block/            ← Custom block classes
+│   └── block/entity/     ← Block entity classes (if any)
+└── client/
+    └── ExampleModClient.java
+```
+
+**CONTENT+FOUNDATION pattern** (Create — large mods 100+ classes):
+```
+com/example/
+├── AllBlocks.java        ← Root-level registrations
+├── AllItems.java
+├── content/              ← Feature modules
+│   ├── magic/
+│   ├── machines/
+│   └── worldgen/
+└── foundation/           ← Shared infrastructure
+    ├── block/
+    ├── item/
+    └── networking/
+```
+
+**REQUIRED KNOWLEDGE:** See `mod-analyzer/knowledge/architecture-patterns.md` for the full decision tree and examples from Trinkets, Farmer's Delight, and Create.
+
 ## Dispatch Templates
 
 ### Simple Item Request
