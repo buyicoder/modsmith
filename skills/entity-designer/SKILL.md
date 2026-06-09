@@ -135,28 +135,42 @@ integrity-checker ← VERIFIES COMPLETENESS
     └── Checks: All blueprint items have corresponding files
 ```
 
-### Blockbench MCP Setup
+### Blockbench Integration
 
-```bash
-# 1. Install Blockbench
-winget install JannisX11.Blockbench
+Blockbench is available at: `C:\Users\Lenovo\AppData\Local\Programs\Blockbench\Blockbench.exe`
 
-# 2. Setup blockbench-mcp
-cd D:/MC/blockbench-mcp
-pnpm install
-pnpm build
+**Workflow: Code → Import → Visual Edit → Export**
 
-# 3. In Blockbench: File > Plugins > Load Plugin from URL
-#    Use: D:/MC/blockbench-mcp/apps/mcp-plugin
-
-# 4. Start MCP server
-node apps/mcp-server/dist/index.js
+```
+1. entity-designer generates Blockbench model JSON (bbmodel)
+2. User opens .bbmodel in Blockbench → sees 3D preview
+3. User can manually tweak: resize cubes, adjust UV, repaint texture
+4. Export → Java EntityModel code
+5. Place in project
 ```
 
-**When Blockbench is NOT available** (offline/headless mode):
-- entity-designer falls back to GearFactory for textures
-- entity-generator generates ModelPart code from blueprints
-- User manually creates the model in Blockbench later
+**Generate .bbmodel from blueprint:**
+```json
+// Output: thunder_golem.bbmodel (Blockbench format)
+{
+  "meta": { "format_version": "4.10", "creation_time": 1700000000 },
+  "name": "Thunder Golem",
+  "model_identifier": "modid:thunder_golem",
+  "elements": [
+    { "name": "head", "type": "cube", "from": [-4, 24, -4], "to": [4, 32, 4], ... },
+    { "name": "body", "type": "cube", "from": [-6, 12, -4], "to": [6, 24, 4], ... }
+    // ... generated from blueprint specs
+  ],
+  "textures": {
+    "0": "D:/MC/fabric-mod-dev/src/main/resources/assets/modid/textures/entity/thunder_golem.png"
+  }
+}
+```
+
+**When Blockbench IS available** (recommended for model tweaking):
+- entity-designer generates .bbmodel file
+- Auto-opens in Blockbench for visual review
+- User adjusts → exports EntityModel.java → entity-generator places in project
 
 ## Real Example: Thunder Golem Retrospective
 
