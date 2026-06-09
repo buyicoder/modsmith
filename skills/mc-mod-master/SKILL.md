@@ -160,6 +160,20 @@ When dispatching to sub-skills, ALWAYS pass the selected architecture pattern.
 
 **Architecture Context Format:** When dispatching, include `[architecture=<pattern>]` so sub-skills know WHERE to put generated code.
 
+## Phase 3: Closed-Loop Pipeline
+
+After generating all code and resources, ModSmith runs the build→fix→rebuild loop:
+
+```
+1. GENERATE all code + resources
+2. BUILD: gradlew build
+   ├── SUCCESS → 5. OUTPUT complete project
+   └── FAILED → 3. AUTO-FIX
+3. AUTO-FIX: Parse errors → apply known fixes
+4. REBUILD: gradlew build (go to step 2)
+   (max 5 iterations, then escalate to user)
+```
+
 ## Output Checklist
 
 After all sub-skills complete, verify:

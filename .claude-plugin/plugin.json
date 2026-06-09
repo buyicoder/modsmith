@@ -1,7 +1,7 @@
 {
   "name": "modsmith",
-  "version": "1.2.0",
-  "description": "ModSmith - Modular Minecraft mod development toolchain for Claude Code. One master skill orchestrates sub-skills for texture generation, item/block/entity creation, and gameplay system design.",
+  "version": "2.0.0",
+  "description": "ModSmith v2.0 - Modular Minecraft mod development agent for Claude Code. Closed-loop build→fix→rebuild pipeline. 8 skills covering texture/ item/block/entity/gameplay generation plus auto-fix repair.",
   "author": "buyicoder",
   "license": "MIT",
   "keywords": ["minecraft", "fabric", "forge", "modding", "texture", "equipment"],
@@ -13,8 +13,13 @@
       "skills/item-generator/SKILL.md",
       "skills/block-generator/SKILL.md",
       "skills/entity-generator/SKILL.md",
-      "skills/gameplay-generator/SKILL.md"
-    ]
+      "skills/gameplay-generator/SKILL.md",
+      "skills/auto-fix/SKILL.md",
+      "skills/mod-analyzer/SKILL.md"
+    ],
+    "mcp": {
+      "config": "mcp/mcp-servers.json"
+    }
   },
   "repository": "https://github.com/buyicoder/modsmith",
   "homepage": "https://github.com/buyicoder/modsmith#readme"

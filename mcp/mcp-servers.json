@@ -1,0 +1,83 @@
+{
+  "mcpServers": {
+    "fabric-versions": {
+      "description": "Query latest Minecraft, Fabric Loader, and Fabric API versions from fabricmc.net",
+      "command": "curl",
+      "args": ["-sL", "https://meta.fabricmc.net/v2/versions/game"],
+      "env": {},
+      "tools": [
+        {
+          "name": "get_latest_mc_version",
+          "description": "Get the latest stable Minecraft version",
+          "handler": "parse_latest_stable"
+        },
+        {
+          "name": "get_fabric_loader_version",
+          "description": "Get Fabric Loader version for a given MC version",
+          "handler": "parse_loader_version",
+          "params": {"mc_version": "string"}
+        },
+        {
+          "name": "get_fabric_api_version",
+          "description": "Get latest Fabric API version for a given MC version",
+          "handler": "parse_api_version",
+          "params": {"mc_version": "string"}
+        }
+      ]
+    },
+    "gradle-build": {
+      "description": "Execute Gradle commands and parse build output for errors",
+      "command": "bash",
+      "args": [],
+      "env": {
+        "JAVA_HOME": "${JAVA_HOME}"
+      },
+      "tools": [
+        {
+          "name": "gradle_build",
+          "description": "Run gradlew build and return output",
+          "handler": "run_gradle",
+          "params": {"project_dir": "string"}
+        },
+        {
+          "name": "gradle_run_client",
+          "description": "Run gradlew runClient for testing",
+          "handler": "run_client",
+          "params": {"project_dir": "string"}
+        },
+        {
+          "name": "parse_gradle_errors",
+          "description": "Parse build output for compilation errors",
+          "handler": "parse_errors",
+          "params": {"build_output": "string"}
+        }
+      ]
+    },
+    "modrinth-search": {
+      "description": "Search Modrinth for reference mods and resource packs",
+      "command": "curl",
+      "args": ["-sL", "https://api.modrinth.com/v2/search"],
+      "env": {},
+      "tools": [
+        {
+          "name": "search_mods",
+          "description": "Search Modrinth for mods matching a query",
+          "handler": "search",
+          "params": {"query": "string", "limit": "number"}
+        },
+        {
+          "name": "get_mod_versions",
+          "description": "Get available versions for a mod",
+          "handler": "get_versions",
+          "params": {"mod_id": "string"}
+        },
+        {
+          "name": "search_resource_packs",
+          "description": "Search for weapon/armor texture resource packs",
+          "handler": "search_packs",
+          "params": {"query": "string"}
+        }
+      ]
+    }
+  }
+}
