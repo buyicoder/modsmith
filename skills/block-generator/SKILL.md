@@ -9,6 +9,19 @@ description: Use when the user needs to create custom Minecraft blocks. Triggers
 
 Generates complete block registration, blockstate JSON, model JSON, BlockItem, and texture references for custom Minecraft blocks.
 
+**REQUIRED CONTEXT:** `mod-analyzer/knowledge/architecture-patterns.md` for package structure decisions.
+
+## Architecture-Aware Generation
+
+| Architecture | Registration location | Block class location | BlockEntity location |
+|-------------|----------------------|---------------------|---------------------|
+| **flat** | `ExampleMod.java` | Same package | Same package |
+| **feature-based** | `common/registry/ModBlocks.java` | `common/block/<Name>Block.java` | `common/block/entity/<Name>BlockEntity.java` |
+| **registry-logic-split** | `reg/ModBlocks.java` (pure data) | `common/block/<Name>Block.java` | `common/block/entity/<Name>BlockEntity.java` |
+| **content+foundation** | Root `AllBlocks.java` | `content/<module>/block/<Name>Block.java` | `content/<module>/block/entity/<Name>BlockEntity.java` |
+
+**DEFAULT: feature-based (Farmer's Delight pattern).**
+
 ## Block Registration Template
 
 ```java

@@ -130,28 +130,35 @@ com/example/
 
 ## Dispatch Templates
 
+When dispatching to sub-skills, ALWAYS pass the selected architecture pattern.
+
 ### Simple Item Request
 ```
 "Add a ruby sword"
+→ Architecture: auto-detect → flat (only 1 item added)
 → texture-generator: sword texture, ruby palette
-→ item-generator: sword, ToolMaterial, recipe, creative tab
+→ item-generator: sword, ToolMaterial, recipe, creative tab [architecture=flat]
 ```
 
 ### Armor Set Request
 ```
 "Add ruby armor"
+→ Architecture: auto-detect → feature-based (5+ items)
 → texture-generator: helmet/chestplate/leggings/boots icons + equipment layers
-→ item-generator: ArmorMaterial + 4 armor items + recipes + tags
+→ item-generator: ArmorMaterial + 4 armor items + recipes + tags [architecture=feature-based]
 ```
 
 ### Complex Mod Request
 ```
 "Make a magic mod with fire staff and ice sword"
+→ Architecture: auto-detect → registry-logic-split (3+ systems)
 → texture-generator: staff + sword textures
-→ item-generator: fire staff (right-click fireball) + ice sword (freeze effect)
-→ block-generator: (if any blocks needed)
+→ item-generator: fire staff (spawns fireball on right-click) + ice sword (freeze effect) [architecture=registry-logic-split]
+→ block-generator: (if any blocks needed) [architecture=registry-logic-split]
 → gameplay-generator: magic system if user wants mana/cooldown
 ```
+
+**Architecture Context Format:** When dispatching, include `[architecture=<pattern>]` so sub-skills know WHERE to put generated code.
 
 ## Output Checklist
 

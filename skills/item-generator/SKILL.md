@@ -10,6 +10,21 @@ description: Use when the user needs to create Minecraft items (weapons, tools, 
 Generates complete Java source code, JSON resources, and registration code for Minecraft items. Supports all item types: materials, tools, armor, food, and custom-behavior items.
 
 **REQUIRED KNOWLEDGE:** `fabric-mc-mod-development` skill for exact API patterns and mappings.
+**REQUIRED CONTEXT:** `mod-analyzer/knowledge/architecture-patterns.md` for package structure decisions.
+
+## Architecture-Aware Generation
+
+The generator adapts its output based on the mod's architecture pattern (passed by mc-mod-master or auto-detected):
+
+| Architecture | Registration location | Custom class location |
+|-------------|----------------------|----------------------|
+| **flat** | `ExampleMod.java` (main class) | Same package root |
+| **feature-based** | `common/registry/ModItems.java` | `common/item/<Name>Item.java` |
+| **registry-logic-split** | `reg/ModItems.java` (pure data) | `common/items/<Name>Item.java` |
+| **content+foundation** | Root `AllItems.java` | `content/<module>/item/<Name>Item.java` |
+| **self-contained-module** | `<module>/<Module>Items.java` | `<module>/item/<Name>Item.java` |
+
+**DEFAULT: feature-based (Farmer's Delight pattern).** Use when architecture is not specified.
 
 ## Item Type Templates
 
